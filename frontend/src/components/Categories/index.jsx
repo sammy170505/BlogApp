@@ -24,6 +24,15 @@ export default function Categories({ blogPost }) {
     </div>
   );
 }
+async function fetchCategories() {
+  try {
+      const response = await fetch('https://ix-blog-app-2d5c689132cd.herokuapp.com/api/categories');
+      const data = await response.json();
+      console.log('Fetched data: ', data);
+  } catch (error) {
+      console.log('Error fetching data', error);
+  }
+}
 
 Categories.prototype = {
   blogPost: PropTypes.object.isRequired,
