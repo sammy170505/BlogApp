@@ -4,7 +4,7 @@ const createBlogs = async (req, res) => {
   try {
     const blog = new Blog({
       authorId: req.body.authorId,
-      categoryId: req.body.categoryId,
+      categoryIds: req.body.categoryId,
       readTime: req.body.readTime,
       title: req.body.title,
       description: req.body.description,
