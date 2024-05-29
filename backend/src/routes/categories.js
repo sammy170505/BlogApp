@@ -4,36 +4,36 @@ const router = express.Router();
 const CategoryController = require("../controllers/categories");
 
 /**
- * POST /api/blogs
+ * POST /api/categories
  */
 router.post("/", (req, res) => {
   CategoryController.createCagtegories(req, res);
 });
 
 /**
- * GET /api/blogs
+ * GET /api/categories
  */
 router.get("/", (req, res) => {
   CategoryController.getCategories(req, res);
 });
 
 /**
- * Get blogs by blogID
- * GET /api/blogs/:id
+ * Get categories by blogID
+ * GET /api/categories/:id
  */
 router.get("/:id", (req, res) => {
-  CategoryController.updateCategoryByID(req, res);
+  CategoryController.getCategoryByID(req, res);
 });
 
 /**
- * Put /api/blogs/
+ * Put /api/categories/
  */
 router.put("/:id", (req, res) => {
   CategoryController.updateCategoryByID(req, res);
 });
 
 /**
- * DELETE /api/blogs/
+ * DELETE /api/categories/
  */
 router.delete("/:id", (req, res) => {
   CategoryController.deleteCategoryByID(req, res);
