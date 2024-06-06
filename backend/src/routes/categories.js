@@ -1,42 +1,24 @@
 const express = require("express");
 const router = express.Router();
 
-const CategoryController = require("../controllers/categories");
+const categoryController = require("../controllers/categories");
 
-/**
- * POST /api/categories
- */
-router.post("/", (req, res) => {
-  CategoryController.createCagtegories(req, res);
+const { protect } = require("../middleware/authMiddleware");
+
+router.post("/", protect, (req, res) => {
+  categoryController.createCategory(req, res);
 });
 
-/**
- * GET /api/categories
- */
 router.get("/", (req, res) => {
-  CategoryController.getCategories(req, res);
+  categoryController.getCategories(req, res);
 });
 
-/**
- * Get categories by blogID
- * GET /api/categories/:id
- */
-router.get("/:id", (req, res) => {
-  CategoryController.getCategoryByID(req, res);
+router.put("/:id", protect, (req, res) => {
+  categoryController.updateCategoryByID(req, res);
 });
 
-/**
- * Put /api/categories/
- */
-router.put("/:id", (req, res) => {
-  CategoryController.updateCategoryByID(req, res);
-});
-
-/**
- * DELETE /api/categories/
- */
-router.delete("/:id", (req, res) => {
-  CategoryController.deleteCategoryByID(req, res);
+router.delete("/:id", protect, (req, res) => {
+  categoryController.deleteCategoryByID(req, res);
 });
 
 module.exports = router;

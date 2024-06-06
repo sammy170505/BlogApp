@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 
 import "./index.css";
 
-export default function CategoriesList({ categories }) {
+import EditButtons from "../EditButtons";
+
+export default function CategoriesList({ categories, onEdit, onDelete }) {
+  const user = JSON.parse(localStorage.getItem("user"));
+
   if (!categories && !categories?.length) {
     return null;
   }
@@ -35,6 +39,16 @@ export default function CategoriesList({ categories }) {
                 {category.description.substring(1, 100)} ...
               </p>
             </div>
+            {user && user?.token && onEdit && onDelete && (
+              <EditButtons
+                onEdit={() => {
+                  onEdit(category);
+                }}
+                onDelete={() => {
+                  onDelete(category);
+                }}
+              />
+            )}
           </button>
         );
       })}

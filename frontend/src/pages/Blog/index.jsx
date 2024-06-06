@@ -1,11 +1,10 @@
+
 import React from "react";
 
 import { useParams } from "react-router-dom";
 
 export default function BlogPage() {
   const { blogId } = useParams();
-
-  // console.log(blogId);
 
   function printHello() {
     console.log("Hello");

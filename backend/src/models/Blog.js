@@ -3,12 +3,14 @@ const mongoose = require("mongoose");
 const blogSchema = new mongoose.Schema(
   {
     authorId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
     categoryIds: {
-      type: Array,
+      type: [mongoose.Schema.Types.ObjectId],
       required: true,
+      ref: "Category",
     },
     title: {
       type: String,
@@ -20,14 +22,51 @@ const blogSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: true,
+      default: "https://storage.googleapis.com/ix-blog-app/default.jpeg",
     },
     content: {
       type: Array,
       required: true,
     },
   },
-  { timeStamp: true }
+  { timestamps: true }
 );
+
+// Add a toJSON method to the schema to control the output of blog instances
+blogSchema.method("toJSON", function () {
+  const {
+    __v,
+    _id,
+    categoryIds: categories,
+    authorId: author,
+    ...object
+  } = this.toObject();
+
+  object.id = _id;
+
+  object.categories = categories.map((category) => {
+    return {
+      id: category._id,
+      title: category.title,
+      description: category.description,
+      color: category.color,
+    };
+  });
+
+  // Ensure author is included in the returned object
+  // Add author details to the blog object
+  if (author && author._id) {
+    object.author = {
+      id: author._id,
+      firstName: author.firstName,
+      lastName: author.lastName,
+      email: author.email,
+      image: author.image,
+      bio: author.bio,
+    };
+  }
+
+  return object;
+});
 
 module.exports = mongoose.model("Blog", blogSchema);
