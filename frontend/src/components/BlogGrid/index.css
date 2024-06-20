@@ -9,16 +9,19 @@
 
 .item-1 {
   padding-right: 12px;
+  border-radius: 50%;
 }
 
 .item-2 {
   padding-left: 12px;
   padding-bottom: 12px;
+  border-radius: 50%;
 }
 
 .item-3 {
   padding-left: 12px;
   padding-top: 12px;
+  border-radius: 50%;
 }
 
 .item-4 {

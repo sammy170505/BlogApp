@@ -78,7 +78,7 @@ export const deleteBlogById = createAsyncThunk(
   "blogs/deleteBlogById",
   async (blogId, thunkAPI) => {
     try {
-      return await blogService.deleteBlogsById(blogId);
+      return await blogService.deleteBlog(blogId);
     } catch (error) {
       const message = error.message || error;
       return thunkAPI.rejectWithValue(message);

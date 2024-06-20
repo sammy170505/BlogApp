@@ -30,11 +30,11 @@ export default function BlogItemText({ blogPost, headerFontSize }) {
       <p style={{ fontSize: "16px", color: "#667085", textAlign: "left" }}>
         {blogPost.description.substring(0, 100)}...
       </p>
-      <Categories blogPost={blogPost?.categories} />
+      <Categories categories={blogPost?.categories} />
     </div>
   );
 }
 BlogItemText.propTypes = {
-  blogPost: PropTypes.array.isRequired,
+  blogPost: PropTypes.object.isRequired,
   headerFontSize: PropTypes.string.isRequired,
 };

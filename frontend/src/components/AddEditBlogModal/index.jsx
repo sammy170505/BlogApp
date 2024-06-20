@@ -50,6 +50,8 @@ export default function AddEditBlogModal() {
   };
 
   const resetBlog = () => {
+    dispatch(setAddBlog(null));
+    dispatch(setEditBlog(null));
     setBlog({
       title: "",
       description: "",
@@ -84,7 +86,7 @@ export default function AddEditBlogModal() {
       <div
         className="modal fade"
         id="addEditModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="addEditModalLabel"
         aria-hidden="true"
       >
